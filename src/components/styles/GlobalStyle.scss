@@ -1,0 +1,219 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400");
+
+:root {
+  --clr-1: #2b2d42;
+  --clr-4: #f7f7f9;
+  --clr-3: #ffda41;
+  --clr-5: #3f51b5;
+  --clr-6: #ff7676;
+
+  --dark80: rgba(48, 79, 89, 0.8);
+  --dark60: rgba(48, 79, 89, 0.6);
+  --transition: all 0.3s ease 0s;
+
+  // --ff: "Poppins", sans-serif;
+  --ff: "Lato", sans-serif;
+  --ff: "Inter", sans-serif;
+  --fw-reg: 300;
+  --fw-bold: 900;
+  --fs-h1: 2.2rem;
+  --fs-h2: 2rem;
+  --fs-h3: 1.6rem;
+  --fs-h4: 1.4rem;
+  --fs-h5: 1.2rem;
+  --fs-body: 1rem;
+
+  --shadow: 0px 0px 30px rgb(0 0 0 / 20%);
+  --spacing: 2rem;
+
+  --rounded: 1.5625rem;
+}
+
+/* Reset class*/
+* {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+  // font-size: clamp(100%, calc(1rem + 2vw), 24px);
+
+  /* Custom scroll bar */
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--clr-6);
+  }
+  &::-webkit-scrollbar-track {
+    background: white;
+  }
+}
+
+html,
+body {
+  background: linear-gradient(to right, #fdbb2d, #22c1c3);
+
+  color: var(--clr-4);
+}
+
+body {
+  line-height: 1.5;
+  font-family: var(--ff);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 100vh;
+  > * {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    @extend .wrapp;
+  }
+}
+
+/**
+* Preventing Text Overflow 
+*/
+p,
+li,
+h1,
+h2,
+h3,
+h4 {
+  // Help prevent overflow of long words/names/URLs
+  overflow-wrap: break-word;
+
+  // Optional, not supported for all languages
+  hyphens: auto;
+}
+
+$type-ratios: (
+  "minorSecond": 1.067,
+  "majorSecond": 1.125,
+  "minorThird": 1.2,
+  "majorThird": 1.25,
+  "perfectFourth": 1.333,
+  "augmentedFourth": 1.414,
+  "perfectFifth": 1.5,
+  "goldenRatio": 1.618,
+);
+
+// Recommended starting point
+$type-base-size: 1rem;
+
+// Select by key of map, or use a custom value
+// $type-size-ratio: type-ratio(goldenRatio);
+
+// List in descending order to prevent extra sort function
+$type-levels: 4, 3, 2, 1;
+
+$level-size: $type-base-size;
+
+@each $level in $type-levels {
+  $level-size: $level-size * map-get($type-ratios, "majorSecond");
+
+  h#{$level} {
+    font-size: $level-size;
+  }
+}
+@media screen and (min-width: 560px) {
+}
+
+@media screen and (min-width: 700px) {
+}
+
+@media screen and (min-width: 960px) {
+}
+
+@media screen and (min-width: 1400px) {
+}
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+a {
+  text-decoration: none;
+  &:hover {
+    color: #blue;
+  }
+}
+ul {
+  list-style-type: none;
+}
+
+.container {
+  // @media screen and (min-width: 640px) {
+  //   max-width: 640px;
+  // }
+  // @media screen and (min-width: 768px) {
+  //   max-width: 768px;
+  // }
+  // @media screen and (min-width: 1024px) {
+  //   max-width: 1024px;
+  // }
+  // @media screen and (min-width: 1280px) {
+  //   max-width: 1280px;
+  // }
+  @media screen and (min-width: 1536px) {
+    max-width: 1536px;
+  }
+}
+
+.wrapp {
+  --pading: 1rem clamp(3.5vw, 1vw + 1rem, 5rem);
+  padding: var(--pading, 4rem);
+}
+.spacing > * + * {
+  margin-top: var(--spacer, 2rem);
+}
+
+.flex {
+  display: flex;
+}
+.center {
+  height: 100%;
+  --direction: column;
+  justify-content: center;
+  flex-direction: var(--direction, column);
+  align-items: center;
+}
+
+.full {
+  width: 100%;
+}
+.split {
+  --gap: 2em;
+
+  gap: var(--gap);
+  flex-wrap: wrap;
+  justify-content: center;
+
+  // & > * {
+  //   --min-width: 15em;
+  //   --flex-basis: 30%;
+  //   flex-basis: var(--flex-basis, 30%);
+  //   min-width: var(--min-width, 15em);
+  // }
+  &__item {
+    // --min-width: 15em;
+    // min-width: var(--min-width, 15em);
+    // ! min width is the same as flex-basis
+    --flex-basis: 30%;
+    flex-basis: var(--flex-basis, 30%);
+  }
+}
+
+// @supports (background-blend-mode: multiply) {
+//   background: url("../assets/img/Hero.png"), radial-gradient(#444, #111);
+//   background-blend-mode: multiply; // *Melt the image with gradient
+//   background-attachment: fixed; // *Parallax effect
+//   background-repeat: no-repeat;
+//   background-position: center center;
+//   background-size: cover;
+// }
